@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ActionCableTest</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+  	<div class="ui grid main-content">
+		  <div class="three wide column nav-styles">
+  			<%= render "layouts/vertical_nav_bar" %>
+		  </div>
+		  <div class="thirteen wide column container">
+			  <div class="sixteen wide column">
+					<%= render "layouts/horizontal_nav_bar" %>
+			  </div>
+		  	<div class="ui raised segment">
+		    	<%= yield %>
+				</div>
+		  </div>
+		</div>
+  </body>
+</html>

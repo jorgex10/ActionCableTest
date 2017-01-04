@@ -1,0 +1,22 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+@import "semantic-ui";
+
+.ui.grid.main-content{
+	margin: 0;
+  padding: 0;
+	height: 100%;
+}
+
+.ui.grid .container{
+	overflow: auto;
+}
+
+.ui.grid .nav-styles{
+	background-color: #d4d4d5;
+	position: fixed;
+  height: 100%;
+}
