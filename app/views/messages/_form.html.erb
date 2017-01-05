@@ -1,0 +1,18 @@
+<%= form_for message, html: { class: "ui form" } do |f| %>
+  <div class="field">
+    <%= f.label :receivers %>
+    <%= text_field_tag :receivers %>
+  </div>
+  <div class="field">
+    <%= f.label :body %>
+    <%= f.text_area :body, rows: "2" %>
+  </div>
+  <div class="ui items">
+    <div class="item">
+      <div class="extra">
+        <%= link_to "Cancel", messages_path, class: "ui right floated button red" %>
+        <%= f.submit "Send", class: "ui right floated button blue" %>
+      </div>
+    </div>
+  </div>
+<% end %>

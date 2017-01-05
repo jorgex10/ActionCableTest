@@ -31,6 +31,10 @@ gem 'semantic-ui-sass', '~> 2.1', '>= 2.1.8.0'
 
 gem 'awesome_print'
 
+gem 'devise'
+
+gem 'pg', '~> 0.18.4'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

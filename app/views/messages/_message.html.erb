@@ -1,0 +1,19 @@
+<div class="ui card">
+  <div class="content">
+    <i class="right floated star icon"></i>
+    <div class="header"><%= message.sender.email %></div>
+    <div class="description">
+      <%= message.body.truncate 70 %>
+    </div>
+  </div>
+  <div class="extra content">
+    <%= link_to message_path(message), class: "left floated eye" do %>
+      <i class="eye icon"></i>
+      Show
+    <% end %>
+    <span class="right floated star">
+      <i class="star icon"></i>
+      Favorite
+    </span>
+  </div>
+</div>
