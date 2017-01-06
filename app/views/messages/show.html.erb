@@ -1,11 +1,5 @@
-<div class="ui grid">
-  <div class="one wide column"></div>
-  <div class="twelve wide column">
-    <h2 class="ui header">
-      <%= @message.sender.email %>
-      <div class="sub header">Sent at: <%= day_month_year_hours_minutes @message.created_at %></div>
-    </h2>
-    <p><%= @message.body %></p>
-  </div>
-  <div class="three wide column"></div>
-</div>
+<h2 class="ui header">
+  <%= @message.sender.email %>
+  <div class="sub header">Sent at: <%= day_month_year_hours_minutes @message.created_at %></div>
+</h2>
+<p><%= @message.body %></p>

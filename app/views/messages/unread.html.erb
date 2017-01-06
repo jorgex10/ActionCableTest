@@ -1,6 +1,6 @@
 <h1>Unread Messages</h1>
 <% if @messages.blank? %>
-  <p>No unread messages has been registered</p>
+  <p id="alert-no-message">No unread messages has been registered</p>
 <% else %>
   <div class="ui cards">
     <% @messages.each do |message| %>
@@ -8,3 +8,5 @@
     <% end %>
   </div>
 <% end %>
+<div id="unread-messages" class="ui cards hidden">
+</div>

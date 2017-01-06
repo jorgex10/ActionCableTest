@@ -10,19 +10,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-    message = Message.new message_params
-    message.sender = current_user
-    if message.valid?
-      message.save
-      receivers = params[:receivers].split(',')
-      ap receivers
-      receivers.each do |receiver|
-        UserMessage.create(user_id: receiver, message: message)
-      end
-      redirect_to sent_messages_path, notice: "Your message has been sent successfully!"
-    else
-      render :new
-    end
   end
 
   def show

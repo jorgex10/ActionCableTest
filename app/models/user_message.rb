@@ -5,4 +5,6 @@ class UserMessage < ApplicationRecord
   belongs_to :user
   belongs_to :message
 
+  after_create_commit { MessageBroadcastJob.perform_later self }
+
 end
