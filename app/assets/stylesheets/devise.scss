@@ -4,3 +4,33 @@
  */
 
 @import "semantic-ui";
+
+body{
+  background-color: #fff !important;
+  padding: 0;
+  margin: 0;
+}
+
+.form-holder{
+  border-radius: 3px;
+  border: solid 2px #00B5AD;
+}
+
+.form-head{
+  font-size: 30px;
+  text-align: center;
+}
+
+#login-styles{
+  margin: 5% auto;
+  max-width: 470px;
+  min-width: 350px;
+}
+
+.form-margin{
+  margin: 0 10%;
+}
+
+.link-styles{
+  margin: 0% auto !important;
+}

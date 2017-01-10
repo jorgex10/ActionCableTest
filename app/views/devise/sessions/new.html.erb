@@ -1,0 +1,22 @@
+<div class="ui one column grid">
+  <div id="login-styles" class="column six wide form-holder">
+    <h2 class="header form-head">Log in</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "ui form form-margin" }) do |f| %>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
+      </div>
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+      </div>
+      <div class="field">
+        <%= f.submit "Log in", class: "ui button large fluid teal" %>
+      </div>
+    <% end %>
+    <br>
+    <div class="ui grid center aligned link-styles">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

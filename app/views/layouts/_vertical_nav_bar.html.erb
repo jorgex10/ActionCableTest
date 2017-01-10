@@ -1,4 +1,4 @@
-<div class="ui vertical menu">
+<div class="ui vertical fluid menu">
   <%= link_to unread_messages_path, class: "item #{'active' if @controller == 'messages' and @action == 'unread'}" do %>
     Unread
     <div id="unread-messages-number" class="ui teal left pointing label"><%= current_user.unread_messages.count %></div>
