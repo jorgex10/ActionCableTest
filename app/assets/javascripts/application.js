@@ -3,4 +3,5 @@
 //= require turbolinks
 //= require semantic-ui
 //= require cable
+//= require notification
 //= require_tree .

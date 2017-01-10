@@ -1,0 +1,29 @@
+document.addEventListener('DOMContentLoaded', ->
+  if (Notification.permission != "granted")
+    Notification.requestPermission()
+)
+
+@notify = (message_id) ->
+  if (!Notification)
+    alert('Desktop notifications not available in your browser. Try Chrome.')
+    return
+
+  if (Notification.permission != "granted")
+    Notification.requestPermission();
+  else
+    notification = new Notification('Notification',
+      icon: "<%= asset_path 'email.png' %>"
+      body: 'You have received a message'
+      silent: false)
+
+    notification.onclick = ->
+      window.open("<%= RELATIVE_URL_ROOT %>" + 'messages/' + message_id).focus();
+
+@show_sent_message_notification = ->
+  if (Notification.permission != "granted")
+    Notification.requestPermission();
+  else
+    notification = new Notification('Notification',
+      icon: "<%= asset_path 'email.png' %>"
+      body: 'Sent!'
+      silent: false)
