@@ -2,6 +2,7 @@ App.message = App.cable.subscriptions.create "MessageChannel",
 
   received: (data) ->
     $('#alert-no-message').hide()
+    $('#unread-messages-number').html data['unread_number_messages']
     return $('#unread-messages').append data['message']
 
   set_new_messages : (message, receivers) ->
