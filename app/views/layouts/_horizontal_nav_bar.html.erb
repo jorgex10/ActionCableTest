@@ -6,7 +6,7 @@
     <%= link_to new_message_path, class: "item #{'active' if @controller == 'messages' and @action == 'new'}" do %>
       <i class="mail icon"></i> Send Message
     <% end %>
-    <div id="user-label" class="right item" data-sender-id="<%= current_user.id %>">
+    <div class="right item">
       <i class="user icon"></i> <%= current_user.email %>
     </div>
     <%= link_to destroy_user_session_path, method: :delete, class: "right item" do %>

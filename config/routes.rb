@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   resources :messages, only: [:index, :new, :create, :show] do
     collection do
       get :sent
-      get :unread
       get :read
+      get :unread
     end
   end
 

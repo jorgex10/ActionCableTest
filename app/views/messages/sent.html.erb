@@ -8,3 +8,12 @@
     <% end %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  window.onload = function() {
+    if (!window.location.hash) {
+      window.location = window.location + '#j';
+      window.location.reload();
+    }
+  }
+</script>

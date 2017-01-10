@@ -2,18 +2,15 @@
 class MessageChannel < ApplicationCable::Channel
 
   def subscribed
-    stream_from "message_channel_user_#{params['user_id']}"
+    stream_from "message_channel_user_#{current_user.id}"
   end
 
   def unsubscribed
   end
 
-  def update_unread_number data
+  def set_new_messages data
     message = Message.create sender: current_user, body: data['message']
     receivers = data['receivers'].split(',')
-    p '--------------------------------------------'
-    ap receivers
-    p '--------------------------------------------'
     receivers.each do |r|
       receiver = User.find r
       UserMessage.create user: receiver, message: message
