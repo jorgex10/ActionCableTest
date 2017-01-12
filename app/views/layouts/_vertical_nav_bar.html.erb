@@ -11,13 +11,13 @@
     Sent
     <div class="ui label"><%= current_user.sent_messages.count %></div>
   <% end %>
-  <a class="item">
-    Favorites
-    <div class="ui label">0</div>
-  </a>
+  <%= link_to starred_messages_path, class: "item #{'active' if @controller == 'messages' and @action == 'starred'}" do %>
+    Starred
+    <div id="starred-messages-number" class="ui label"><%= current_user.starred_messages.count %></div>
+  <% end %>
   <div class="item">
     <div class="ui transparent icon input">
-      <input type="text" placeholder="Search mail...">
+      <input type="text" placeholder="Search mail ...">
       <i class="search icon"></i>
     </div>
   </div>

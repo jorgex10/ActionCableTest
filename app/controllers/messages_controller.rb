@@ -7,9 +7,7 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
-  end
-
-  def create
+    @users = User.all - [current_user]
   end
 
   def show
@@ -21,15 +19,19 @@ class MessagesController < ApplicationController
   end
 
   def sent
-    @messages = current_user.sent_messages
+    @messages = current_user.sent_messages.includes(:sender)
   end
 
   def unread
-    @messages = current_user.unread_messages
+    @messages = current_user.unread_messages.includes(:sender)
   end
 
   def read
-    @messages = current_user.read_messages
+    @messages = current_user.read_messages.includes(:sender)
+  end
+
+  def starred
+    @messages = current_user.starred_messages.includes(:sender)
   end
 
   private

@@ -1,0 +1,10 @@
+<div class="ui fluid multiple search selection dropdown">
+  <%= hidden_field_tag :tags, "", id: "receivers" %>
+  <i class="dropdown icon"></i>
+  <div class="default text">Select the receivers</div>
+  <div class="menu">
+    <% @users.each do |user| %>
+      <div class="item" data-value="<%= user.id %>"><%= user.email %></div>
+    <% end %>
+  </div>
+</div>

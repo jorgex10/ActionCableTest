@@ -11,7 +11,9 @@ Rails.application.routes.draw do
       get :sent
       get :read
       get :unread
+      get :starred
     end
+    post :star, on: :member
   end
 
 end

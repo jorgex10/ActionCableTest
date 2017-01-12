@@ -1,0 +1,7 @@
+<h1>Starred Messages</h1>
+<% if @messages.blank? %>
+  <p>No starred messages has been registered</p>
+<% end %>
+<div id="starred-messages" class="ui cards">
+  <%= render @messages %>
+</div>

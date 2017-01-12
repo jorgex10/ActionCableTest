@@ -1,7 +1,7 @@
 <%= form_for message, html: { id: "form_message", class: "ui form" } do |f| %>
   <div class="field">
     <%= f.label :receivers %>
-    <%= text_field_tag :receivers %>
+    <%= render "receivers_dropdown" %>
   </div>
   <div class="field">
     <%= f.label :body %>
@@ -16,3 +16,7 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $('.ui.dropdown').dropdown();
+</script>

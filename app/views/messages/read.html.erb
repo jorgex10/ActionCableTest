@@ -3,8 +3,6 @@
   <p>No read messages has been registered</p>
 <% else %>
   <div class="ui cards">
-    <% @messages.each do |message| %>
-      <%= render "message", message: message %>
-    <% end %>
+    <%= render @messages %>
   </div>
 <% end %>

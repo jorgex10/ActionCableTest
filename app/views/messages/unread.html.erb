@@ -3,7 +3,5 @@
   <p id="alert-no-message">No unread messages has been registered</p>
 <% end %>
 <div id="unread-messages" class="ui cards">
-  <% @messages.each do |message| %>
-    <%= render "message", message: message %>
-  <% end %>
+  <%= render @messages %>
 </div>

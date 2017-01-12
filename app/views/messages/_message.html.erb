@@ -1,6 +1,6 @@
 <div class="ui card">
   <div class="content">
-    <i class="right floated star icon"></i>
+    <i id="user_<%= current_user.id %>_message_<%= message.id %>_star" data-message-id="<%= message.id %>" class="start-for-message right floated star icon <%= 'active' if current_user.is_favorite? message %>"></i>
     <div class="header"><%= message.sender.email %></div>
     <div class="description">
       <%= message.body.truncate 70 %>
@@ -11,9 +11,8 @@
       <i class="eye icon"></i>
       Show
     <% end %>
-    <span class="right floated star">
-      <i class="star icon"></i>
-      Favorite
+    <span class="right floated">
+      <%= format_date_to_show_message message.created_at %>
     </span>
   </div>
 </div>
