@@ -8,6 +8,7 @@
     <% end %>
     <div class="right item">
       <i class="user icon"></i> <%= current_user.email %>
+      <input id="current-user-id" type="hidden" data-user-id="<%= current_user.id %>">
     </div>
     <%= link_to destroy_user_session_path, method: :delete, class: "right item" do %>
       <i class="sign out icon"></i> SignOut

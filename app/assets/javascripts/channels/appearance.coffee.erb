@@ -1,0 +1,13 @@
+App.appearance = App.cable.subscriptions.create "AppearanceChannel",
+  
+  connected: ->
+    $('#state_system_user_' + $('#current-user-id').data('user-id')).removeClass("grey")
+    $('#state_system_user_' + $('#current-user-id').data('user-id')).addClass("green")
+
+  received: (data) ->
+    if data['sign_in']
+      $('#state_system_user_' + data['user_id']).removeClass("grey")
+      $('#state_system_user_' + data['user_id']).addClass("green")
+    else
+      $('#state_system_user_' + data['user_id']).removeClass("green")
+      $('#state_system_user_' + data['user_id']).addClass("grey")

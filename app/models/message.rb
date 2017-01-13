@@ -2,8 +2,8 @@ class Message < ApplicationRecord
 
   validates :sender_id, :body, presence: true
 
-  has_many :user_messages
-  has_many :favorite_messages
+  has_many :user_messages, dependent: :destroy
+  has_many :favorite_messages, dependent: :destroy
   has_many :receivers, through: :user_messages, source: :user
   belongs_to :sender, foreign_key: :sender_id, class_name: "User"
   has_many :starred_by, through: :favorite_messages, source: :user

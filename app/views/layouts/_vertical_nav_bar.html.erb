@@ -15,10 +15,23 @@
     Starred
     <div id="starred-messages-number" class="ui label"><%= current_user.starred_messages.count %></div>
   <% end %>
+</div>
+
+<div class="ui huge vertical fluid menu">
   <div class="item">
     <div class="ui transparent icon input">
       <input type="text" placeholder="Search mail ...">
       <i class="search icon"></i>
+    </div>
+  </div>
+  <div class="item">
+    <div class="header">Users</div>
+    <div class="menu">
+      <% @users.each do |user| %>
+        <a class="item">
+          <i id="state_system_user_<%= user.id %>" class="user icon <%= user.online? ? 'green' : 'gray' %>"></i> <%= user.email.truncate 22 %>
+        </a>
+      <% end %>
     </div>
   </div>
 </div>
