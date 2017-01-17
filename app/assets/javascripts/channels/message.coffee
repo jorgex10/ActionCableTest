@@ -8,10 +8,10 @@ App.message = App.cable.subscriptions.create "MessageChannel",
       notify(data['message_id'])
     return $('#unread-messages').append data['message']
 
-  set_new_messages : (message, receivers) ->
+  set_new_messages: (message, receivers) ->
     @perform 'set_new_messages', message: message, receivers: receivers
 
-  set_new_starred : (message_id) ->
+  set_new_starred: (message_id) ->
     @perform 'set_new_starred', message_id: message_id
 
 jQuery(document).on 'turbolinks:load', ->

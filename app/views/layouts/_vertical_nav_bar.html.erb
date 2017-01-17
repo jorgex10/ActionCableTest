@@ -28,7 +28,7 @@
     <div class="header">Users</div>
     <div class="menu">
       <% @users.each do |user| %>
-        <a class="item">
+        <a class="item" onclick="widget_trigger(<%= user.id %>, '<%= user.email %>', '<%= user.active_session %>')">
           <i id="state_system_user_<%= user.id %>" class="user icon <%= user.online? ? 'green' : 'gray' %>"></i> <%= user.email.truncate 22 %>
         </a>
       <% end %>

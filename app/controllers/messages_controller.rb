@@ -7,7 +7,6 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
-    @users = User.all - [current_user]
   end
 
   def show

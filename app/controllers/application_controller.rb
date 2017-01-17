@@ -14,8 +14,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_controller
-    @users = User.order :email
     @controller = params[:controller]
+    @users = User.order(:email) - [current_user]
+    @ghost_user = User.new id: 0
   end
 
   def set_action

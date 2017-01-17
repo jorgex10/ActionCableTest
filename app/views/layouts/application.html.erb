@@ -9,18 +9,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-  	<div class="ui grid main-content">
-		  <div class="three wide column nav-styles">
-  			<%= render "layouts/vertical_nav_bar" %>
-		  </div>
-		  <div class="thirteen wide column container">
-			  <div class="sixteen wide column">
-					<%= render "layouts/horizontal_nav_bar" %>
-			  </div>
+    <div class="ui grid main-content">
+      <div class="three wide column nav-styles">
+        <%= render "layouts/vertical_nav_bar" %>
+      </div>
+      <div class="thirteen wide column container">
+        <div class="sixteen wide column">
+          <%= render "layouts/horizontal_nav_bar" %>
+        </div>
         <div class="dashboard-styles">
-		    	<%= yield %>
-				</div>
-		  </div>
-		</div>
+          <%= yield %>
+        </div>
+        <div id="conversations">
+          <%= render "layouts/chat_widget", user: @ghost_user %>
+        </div>
+        <script type="text/javascript">
+          $('.live-chat').hide();
+        </script>
+      </div>
+    </div>
   </body>
 </html>

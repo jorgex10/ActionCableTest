@@ -8,6 +8,8 @@ App.appearance = App.cable.subscriptions.create "AppearanceChannel",
     if data['sign_in']
       $('#state_system_user_' + data['user_id']).removeClass("grey")
       $('#state_system_user_' + data['user_id']).addClass("green")
+      $('#user-status-' + data['user_id']).removeClass("offline")
     else
       $('#state_system_user_' + data['user_id']).removeClass("green")
       $('#state_system_user_' + data['user_id']).addClass("grey")
+      $('#user-status-' + data['user_id']).addClass("offline")
