@@ -54,7 +54,7 @@
       minCharacters : 3,
       onSelect: function(result, response) {
         $.ajax({
-          type:'POST',
+          type: 'POST',
           url: "<%= RELATIVE_URL_ROOT %>" + "rooms/",
           data: {sender_id: $("#current-user-id").data("user-id"), receiver_id: result.user_id},
           dataType: "json"
