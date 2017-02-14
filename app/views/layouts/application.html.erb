@@ -15,16 +15,38 @@
       </div>
       <div class="thirteen wide column container">
         <div class="sixteen wide column">
-          <%= render "layouts/horizontal_nav_bar" %>
+          <div class="ui attached stackable menu">
+            <%= link_to messages_path, class: "item #{'active' if @controller == 'messages' and @action == 'index'}" do %>
+              <i class="home icon"></i> Home
+            <% end %>
+            <%= link_to new_message_path, class: "item #{'active' if @controller == 'messages' and @action == 'new'}" do %>
+              <i class="mail icon"></i> Send Message
+            <% end %>
+            <input id="current-user-id" type="hidden" data-user-id="<%= current_user.id %>">
+            <div class="ui dropdown icon right item">
+              <i class="user icon green margin-user-status"></i>
+              <%= current_user.full_name %>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <%= link_to edit_user_registration_path, class: "item" do %>
+                  <i class="edit icon"></i> Profile
+                <% end %>
+                <%= link_to destroy_user_session_path, method: :delete, class: "item" do %>
+                  <i class="sign out icon"></i> SignOut
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="dashboard-styles">
           <%= yield %>
         </div>
         <div id="conversations">
-          <%= render "layouts/chat_widget", user: @ghost_user %>
+          <%= render "layouts/chat_views/chat_widget" %>
         </div>
         <script type="text/javascript">
           $('.live-chat').hide();
+          $('.ui.dropdown').dropdown();
         </script>
       </div>
     </div>

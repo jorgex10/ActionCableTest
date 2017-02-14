@@ -1,0 +1,9 @@
+<div class="chat-message clearfix">
+  <%= user_avatar message.user.id %>
+  <div class="chat-message-content clearfix">
+    <span class="chat-time"><%= date_formatter_for_chat message.created_at %></span>
+    <h5><%= message.user.email %></h5>
+    <p><%= message.body %></p>
+  </div>
+</div>
+<hr>

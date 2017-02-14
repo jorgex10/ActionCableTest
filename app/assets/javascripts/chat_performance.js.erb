@@ -1,0 +1,108 @@
+widget_trigger = function(room_id, room_name, receiver_id, sender_id){
+  var obj = $("#room-label-chat-" + room_id + sender_id);
+  if (obj.hasClass("unread-message-indicator")) {
+    make_messages_as_read(obj, room_id, sender_id);
+  }
+  var can_create = true;
+  $( ".live-chat" ).each(function(index) {
+    if ($(this).attr('id') == ('live-chat-' + room_id)) {
+      can_create = false;
+    }
+  });
+  if (can_create) {
+    var actives = $(".live-chat");
+    var new_right_value = (actives.length - 1) * 310 + 24;
+    if (actives.length <= 3) {
+      $('.live-chat:first').clone().appendTo('#conversations');
+      $('.live-chat:last').attr('id', 'live-chat-' + room_id);
+      $(".live-chat:last .chat-close").attr('id', 'chat-close-' + room_id);
+      $(".live-chat:last .chat").attr('id', 'chat-' + room_id);
+      $(".live-chat:last .chat-message-counter").attr('id', 'chat-message-counter-' + room_id);
+      $(".live-chat:last .room-status").attr('id', 'room-status-' + room_id);
+      $(".live-chat:last .send_message").attr('id', 'send_message_' + room_id + sender_id);
+      $(".live-chat:last .send_message").attr("data-room-id", room_id);
+      $(".live-chat:last .send_message").attr("data-sender-id", sender_id);
+      $(".live-chat:last .chat-history").attr('id', 'chat-history-' + room_id + sender_id);
+      $(".live-chat:last header").attr('id', 'header-' + room_id);
+      $('.live-chat:last').css('right', new_right_value);
+      $('.live-chat:last #room-fullname').html(room_name);
+      $('.live-chat:last').show();
+
+      (function() {
+        $.ajax({
+          type:'GET',
+          url: "<%= RELATIVE_URL_ROOT %>" + "rooms/" + room_id,
+          dataType: "json"
+        })
+        .success(function(data) {
+          if (data.messages) {
+            data.messages.forEach(function(element, index){
+              var html = $('<div class="chat-message clearfix">' + element.user_photo + '<div class="chat-message-content clearfix"><span class="chat-time">'+ element.created_at + '</span><h5>' + element.user_email + '</h5><p>' + element.body + '</p></div></div><hr>');
+              $('#chat-history-' + room_id + sender_id).append(html);
+            })
+            var messages = $('#chat-history-' + room_id + sender_id);
+            var messages_to_bottom = function() {
+              return messages.scrollTop(messages.prop('scrollHeight'));
+            };
+            messages_to_bottom();
+          }
+        })
+      }) ();
+
+      if ($("#state_system_user_" + receiver_id).hasClass("green")) {
+        $('#room-status-' + room_id).removeClass("offline");
+      }
+      else{
+        $('#room-status-' + room_id).addClass("offline");
+      }
+
+      (function() {
+        $("#live-chat-" + room_id + " #header-" + room_id).on('click', function() {
+          $('#chat-' + room_id).slideToggle(300, 'swing');
+          $('#chat-message-counter-' + room_id).fadeToggle(300, 'swing');
+        });
+        $('#chat-close-' + room_id).on('click', function(e) {
+          $('#live-chat-' + room_id).fadeOut(300);
+          $('#live-chat-' + room_id).remove();
+          refactor_positions();
+          e.preventDefault();
+        });
+      }) ();
+    }
+  }
+}
+
+refactor_positions = function(){
+  var widget_actives = $(".live-chat").length - 1;
+  var new_right_value = 24;
+  $( ".live-chat" ).each(function(index) {
+    if (index != 0) {
+      $(this).animate({"right": new_right_value});
+      new_right_value = new_right_value + 310;
+    }
+  });
+}
+
+var make_messages_as_read = function(obj, room_id, user_id) {
+  $.ajax({
+    type:'PUT',
+    url: "<%= RELATIVE_URL_ROOT %>" + "rooms/" + room_id + "/make_messages_as_read",
+    data: { receiver_id: user_id },
+    dataType: "script"
+  })
+  .success(function(data) {
+    obj.removeClass("unread-message-indicator");
+  })
+  .error(function(data) {
+    obj.addClass("unread-message-indicator");
+  })
+}
+
+make_read_messages = function(obj){
+  var element = $(obj);
+  var room_id = element.data("room-id");
+  var sender_id = element.data("sender-id");
+  if (element.is(":focus")) {
+    make_messages_as_read($("#room-label-chat-" + room_id + sender_id), room_id, sender_id);
+  }
+}

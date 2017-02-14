@@ -19,19 +19,49 @@
 
 <div class="ui huge vertical fluid menu">
   <div class="item">
-    <div class="ui transparent icon input">
-      <input type="text" placeholder="Search mail ...">
-      <i class="search icon"></i>
+    <div class="ui left aligned search">
+      <div class="ui transparent fluid icon input">
+        <input class="prompt" type="text" placeholder="Search mail ... ">
+        <i class="search icon"></i>
+      </div>
+      <div class="results"></div>
     </div>
   </div>
   <div class="item">
-    <div class="header">Users</div>
+    <div class="header">Conversations</div>
     <div class="menu">
-      <% @users.each do |user| %>
-        <a class="item" onclick="widget_trigger(<%= user.id %>, '<%= user.email %>', '<%= user.active_session %>')">
-          <i id="state_system_user_<%= user.id %>" class="user icon <%= user.online? ? 'green' : 'gray' %>"></i> <%= user.email.truncate 22 %>
+      <% @own_rooms.each do |room| %>
+        <a id="room-label-chat-<%= room.id %><%= current_user.id %>" class="item chat-initializer <%= 'unread-message-indicator' if current_user.has_unread_messages?(room) %>" data-room-id="<%= room.id %>" onclick="widget_trigger(<%= room.id %>, '<%= room.set_name(current_user) %>', '<%= room.receiver(current_user).id %>', '<%= current_user.id %>')">
+          <i id="state_system_user_<%= room.receiver(current_user).id %>" class="user icon <%= room.receiver(current_user).online? ? 'green' : 'gray' %>"></i> <%= room.set_name(current_user).truncate 22 %>
         </a>
       <% end %>
     </div>
   </div>
 </div>
+
+<script>
+  $('.ui.search')
+    .search({
+      apiSettings: {
+        url: "<%= RELATIVE_URL_ROOT %>" + "users/?query={query}"
+      },
+      fields: {
+        results     : 'users',
+        title       : 'full_name',
+        description : 'email',
+        image       : 'photo'
+      },
+      minCharacters : 3,
+      onSelect: function(result, response) {
+        $.ajax({
+          type:'POST',
+          url: "<%= RELATIVE_URL_ROOT %>" + "rooms/",
+          data: {sender_id: $("#current-user-id").data("user-id"), receiver_id: result.user_id},
+          dataType: "json"
+        })
+      },
+      onResultsOpen: function(){
+        $(".results").width(370);
+      }
+  });
+</script>

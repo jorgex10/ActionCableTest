@@ -4,7 +4,10 @@
   <div class="default text">Select the receivers</div>
   <div class="menu">
     <% @users.each do |user| %>
-      <div class="item" data-value="<%= user.id %>"><%= user.email %></div>
+      <div class="item" data-value="<%= user.id %>">
+        <%= user_avatar_for_search user, class: "ui avatar image" %>
+        <%= user.full_name %>
+      </div>
     <% end %>
   </div>
 </div>

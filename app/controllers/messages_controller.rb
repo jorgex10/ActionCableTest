@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
   end
 
   def new
+    @users = User.all - [current_user]
     @message = Message.new
   end
 
