@@ -19,14 +19,11 @@ module ApplicationHelper
     from_today ? date.strftime("%I:%M %p") : date.strftime("%b %d, %Y")
   end
 
-  def user_avatar user_id
-    user = User.find_by id: user_id
-    if user
-      if user.photo.file?
-        image_tag user.photo.url(:thumb), class: "media-object img-circle", style: "width:40px;height:40px;"
-      else
-        image_tag user.avatar_url, class: "media-object img-circle", style: "width:40px;height:40px;"
-      end
+  def user_avatar user
+    if user.photo.file?
+      image_tag user.photo.url(:thumb), class: "media-object img-circle", style: "width:40px;height:40px;"
+    else
+      image_tag user.avatar_url, class: "media-object img-circle", style: "width:40px;height:40px;"
     end
   end
 

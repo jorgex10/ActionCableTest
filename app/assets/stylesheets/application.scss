@@ -3,8 +3,6 @@
  *= require_self
  */
 
-@import "semantic-ui";
-
 body{
   a{
     color: rgba(0,0,0,0.4);
@@ -12,18 +10,18 @@ body{
 }
 
 .ui.grid.main-content{
-	margin: 0;
+  margin: 0;
   padding: 0;
-	height: 100%;
+  height: 100%;
 }
 
 .ui.grid .container{
-	overflow: auto;
+  overflow: auto;
 }
 
 .ui.grid .nav-styles{
-	background-color: #d4d4d5;
-	position: fixed;
+  background-color: #d4d4d5;
+  position: fixed;
   height: 100%;
 }
 
@@ -61,4 +59,70 @@ body{
 
 .ui.fluid.input > input {
   border-radius: 0px;
+}
+
+.ui.grid.main-content.bottom.attached.segment.pushable {
+  margin-bottom: 0px;
+}
+
+#messages-menu {
+  display: inline-table;
+}
+
+#conversations-menu {
+  display: list-item;
+  overflow-y: auto;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .three.wide.column.nav-styles.column3 {
+    display: none;
+  }
+
+  .thirteen.wide.column.container.column13 {
+    width: 100% !important;
+  }
+
+  #trigger-vertical-menu {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+ .three.wide.column.nav-styles.column3 {
+    display: none;
+  }
+
+  .thirteen.wide.column.container.column13 {
+    width: 100% !important;
+  }
+
+  #trigger-vertical-menu {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .three.wide.column.nav-styles.column3 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #trigger-vertical-menu {
+    display: none;
+  }
+
+  #vertical-sidebar{
+    display: none;
+  }
+
+  #principal-container {
+    -webkit-transform: initial;
+    transform: initial;
+  }
+
+  .pusher.thirteen.wide.column.container.column13.dimmed:after {
+    opacity: 0 !important;
+  }
+
 }

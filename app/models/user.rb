@@ -39,8 +39,8 @@ class User < ApplicationRecord
   end
 
   def has_unread_messages? room
-    sender = (room.users - [self]).first
-    room.room_messages.includes(:users).where(user: sender, read: false).count == 0 ? false : true
+    sender = (room.users.includes(:user_rooms) - [self]).first
+    room.room_messages.where(user: sender, read: false).count == 0 ? false : true
   end
 
   def self.search_with query

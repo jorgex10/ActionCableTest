@@ -9,13 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <div class="ui grid main-content">
-      <div class="three wide column nav-styles">
+    <div class="ui grid main-content bottom attached segment pushable">
+      <div id="vertical-sidebar" class="ui labeled icon left inline vertical sidebar menu">
         <%= render "layouts/vertical_nav_bar" %>
       </div>
-      <div class="thirteen wide column container">
+      <div class="three wide column nav-styles column3">
+        <%= render "layouts/vertical_nav_bar" %>
+      </div>
+      <div id="principal-container" class="pusher thirteen wide column container column13">
         <div class="sixteen wide column">
           <div class="ui attached stackable menu">
+            <a id="trigger-vertical-menu" class="item">
+              <i class="sidebar icon"></i> Menu
+            </a>
             <%= link_to messages_path, class: "item #{'active' if @controller == 'messages' and @action == 'index'}" do %>
               <i class="home icon"></i> Home
             <% end %>
@@ -47,6 +53,7 @@
         <script type="text/javascript">
           $('.live-chat').hide();
           $('.ui.dropdown').dropdown();
+          $('.ui.sidebar').sidebar({ context: $('.bottom.segment') }).sidebar('attach events', '#trigger-vertical-menu');
         </script>
       </div>
     </div>
